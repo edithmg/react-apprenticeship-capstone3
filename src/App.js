@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import GlobalContext from './context/GlobalContext';
+import { useLocalStorage } from './utils/hooks/useLocalStorage';
+import GlobalStyles from './GlobalStyles';
+import Header from './components/Layout/Header';
+import Home from './pages/Home';
 
-function App() {
+const App = () => {
+  const [items, setItems] = useLocalStorage('notes', []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalContext.Provider value={{ items, setItems }}>
+      <BrowserRouter>
+        <GlobalStyles />
+        <Header />
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route index path="/home" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </GlobalContext.Provider>
   );
-}
+};
 
 export default App;
