@@ -15,7 +15,7 @@ const Note = ({ id, title, content, handleRemoveItem }) => {
       <NoteContent type="text" name="content" defaultValue={content} />
       <NoteControls>
         <NoteBtn onClick={() => handleRemoveItem(id)}>
-          <MdDeleteForever />{' '}
+          <MdDeleteForever title="Delete note" />{' '}
         </NoteBtn>
       </NoteControls>
     </NoteForm>

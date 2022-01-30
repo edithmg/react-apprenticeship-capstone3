@@ -13,12 +13,14 @@ const NoteForm = (props) => {
   const initialState = {
     title: props.item ? props.item.title : '',
     content: props.item ? props.item.content : '',
+    archive: props.item ? props.item.archive : false,
+    trash: props.item ? props.item.trash : false,
   };
   const [item, setItem] = useState(initialState);
   const [showTitle, setShowTitle] = useState(false);
   const [clearForm, setClearForm] = useState(false);
 
-  const { title, content } = item;
+  const { title, content, archive, trash } = item;
 
   const onFocusNote = () => {
     setShowTitle(true);
@@ -26,16 +28,33 @@ const NoteForm = (props) => {
 
   const onChangeValues = (e) => {
     const { name, value } = e.target;
-    setItem((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    console.log(name, value);
+    switch (name) {
+      case 'archive':
+        console.log(name, value);
+        setItem((prevState) => ({
+          ...prevState,
+          [name]: true,
+        }));
+        break;
+      case 'trash':
+        setItem((prevState) => ({
+          ...prevState,
+          [name]: true,
+        }));
+        break;
+      default:
+        setItem((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+    }
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     onFocusNote();
-    const values = [title, content];
+    const values = [title, content, archive, trash];
 
     const allFieldsFilled = values.every((field) => {
       const value = `${field}`.trim();
@@ -47,6 +66,8 @@ const NoteForm = (props) => {
         id: nanoid(),
         title,
         content,
+        archive,
+        trash,
       };
       setClearForm(true);
       props.handleOnSubmit(item);
@@ -76,10 +97,15 @@ const NoteForm = (props) => {
       {showTitle && (
         <NoteControls>
           <NoteBtn>
-            <MdOutlinePalette />
+            <MdOutlinePalette title="Change note color" />
           </NoteBtn>
           <NoteBtn>
-            <MdOutlineArchive />{' '}
+            <MdOutlineArchive
+              name="archive"
+              value={archive}
+              onClick={onChangeValues}
+              title="Archive note"
+            />{' '}
           </NoteBtn>
           <NoteBtn type="submit">CLOSE</NoteBtn>
         </NoteControls>

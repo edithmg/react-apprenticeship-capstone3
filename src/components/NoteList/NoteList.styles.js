@@ -4,6 +4,7 @@ export const SectionNotes = styled.section`
   margin: 1.5rem;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+
   align-items: center;
 `;

@@ -18,7 +18,7 @@ const NoteList = () => {
             <Note key={item.id} {...item} handleRemoveItem={handleRemoveItem} />
           ))
         ) : (
-          <h4>No notes.</h4>
+          <h4>No notes!, create a new one :) </h4>
         )}
       </SectionNotes>
     </>

@@ -11,7 +11,6 @@ export const NoteForm = styled.form`
 
 export const NoteTitle = styled.input`
   border: none;
-  color: #000;
   display: block;
   width: 100%;
   font-size: 18px;
@@ -25,7 +24,6 @@ export const NoteTitle = styled.input`
 
 export const NoteContent = styled.textarea`
   border: none;
-  color: #000;
   display: block;
   width: 100%;
   font-size: 13px;
@@ -35,7 +33,6 @@ export const NoteContent = styled.textarea`
   overflow: hidden;
   min-height: 10px;
   &::placeholder {
-    color: #3c4043;
     opacity: 1;
   }
 `;
