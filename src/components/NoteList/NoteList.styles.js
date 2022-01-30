@@ -5,6 +5,5 @@ export const SectionNotes = styled.section`
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-
   align-items: center;
 `;

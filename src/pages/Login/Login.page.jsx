@@ -1,12 +1,16 @@
 import React from 'react';
 import LoginButton from '../../components/LoginButton';
-import { Section } from '../../GlobalStyles';
+import { Container } from '../../GlobalStyles';
+import { LoginSection } from './Login.styles';
 
 const Login = () => {
   return (
-    <Section>
-      <LoginButton />
-    </Section>
+    <Container>
+      <LoginSection>
+        <h2>Login to Tidy Notes with your Google account:</h2>
+        <LoginButton />
+      </LoginSection>
+    </Container>
   );
 };
 

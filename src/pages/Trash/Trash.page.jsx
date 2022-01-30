@@ -1,15 +1,13 @@
 import React from 'react';
-import NewNote from '../../components/NewNote';
 import NoteList from '../../components/NoteList';
 import { Container } from '../../GlobalStyles';
 
-const Home = () => {
+const Trash = () => {
   return (
     <Container>
-      <NewNote />
-      <NoteList type="full" />
+      <NoteList type="trash" />
     </Container>
   );
 };
 
-export default Home;
+export default Trash;

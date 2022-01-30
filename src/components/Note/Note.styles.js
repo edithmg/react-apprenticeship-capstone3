@@ -12,6 +12,8 @@ export const NoteForm = styled.form`
 export const NoteTitle = styled.input`
   border: none;
   display: block;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
   width: 100%;
   font-size: 18px;
   margin: 10px 0;
@@ -24,6 +26,8 @@ export const NoteTitle = styled.input`
 export const NoteContent = styled.textarea`
   border: none;
   display: block;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
   width: 100%;
   font-size: 13px;
   font-weight: bold;
@@ -39,6 +43,8 @@ export const NoteContent = styled.textarea`
 export const NoteControls = styled.div`
   display: flex;
   flex-direction: row;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
 `;
 
 export const NoteBtn = styled.button`

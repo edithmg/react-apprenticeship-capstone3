@@ -12,6 +12,9 @@ import ThemeToggler from './components/ThemeToggler';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Test from './pages/Test';
+import Search from './pages/Search';
+import Archive from './pages/Archive';
+import Trash from './pages/Trash';
 
 const App = () => {
   const [items, setItems] = useLocalStorage('notes', []);
@@ -40,6 +43,15 @@ const App = () => {
               </Route>
               <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/search">
+                <Search />
+              </Route>
+              <Route path="/archive">
+                <Archive />
+              </Route>
+              <Route path="/trash">
+                <Trash />
               </Route>
               <Private exact path="/test">
                 <Test />

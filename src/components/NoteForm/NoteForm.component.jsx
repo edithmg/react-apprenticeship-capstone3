@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { MdOutlineArchive, MdOutlinePalette } from 'react-icons/md';
+import {
+  MdOutlineArchive,
+  MdOutlinePalette,
+  MdOutlineDelete,
+} from 'react-icons/md';
 import {
   NoteBtn,
   NoteContent,
@@ -19,6 +23,8 @@ const NoteForm = (props) => {
   const [item, setItem] = useState(initialState);
   const [showTitle, setShowTitle] = useState(false);
   const [clearForm, setClearForm] = useState(false);
+  const [sendToArchive, setSendToArchive] = useState(false);
+  const [sendToTrash, setSendToTrash] = useState(false);
 
   const { title, content, archive, trash } = item;
 
@@ -26,29 +32,22 @@ const NoteForm = (props) => {
     setShowTitle(true);
   };
 
+  const fileToArchive = (e) => {
+    e.preventDefault();
+    setSendToArchive(true);
+  };
+
+  const fileToTrash = (e) => {
+    e.preventDefault();
+    setSendToTrash(true);
+  };
+
   const onChangeValues = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-    switch (name) {
-      case 'archive':
-        console.log(name, value);
-        setItem((prevState) => ({
-          ...prevState,
-          [name]: true,
-        }));
-        break;
-      case 'trash':
-        setItem((prevState) => ({
-          ...prevState,
-          [name]: true,
-        }));
-        break;
-      default:
-        setItem((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }));
-    }
+    setItem((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleOnSubmit = (event) => {
@@ -69,6 +68,9 @@ const NoteForm = (props) => {
         archive,
         trash,
       };
+      //revisiting archive/trash status
+      item.archive = sendToArchive;
+      item.trash = sendToTrash;
       setClearForm(true);
       props.handleOnSubmit(item);
     }
@@ -100,12 +102,10 @@ const NoteForm = (props) => {
             <MdOutlinePalette title="Change note color" />
           </NoteBtn>
           <NoteBtn>
-            <MdOutlineArchive
-              name="archive"
-              value={archive}
-              onClick={onChangeValues}
-              title="Archive note"
-            />{' '}
+            <MdOutlineArchive onClick={fileToArchive} title="Archive note" />{' '}
+          </NoteBtn>
+          <NoteBtn>
+            <MdOutlineDelete onClick={fileToTrash} title="Trash note" />
           </NoteBtn>
           <NoteBtn type="submit">CLOSE</NoteBtn>
         </NoteControls>

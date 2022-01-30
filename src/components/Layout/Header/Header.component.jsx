@@ -29,6 +29,7 @@ const Header = ({ children }) => {
           </Logo>
           <Menu isOpen={isOpen}>
             <MenuLink> {children}</MenuLink>
+            {isAuthenticated && <MenuLink href="/search">Search</MenuLink>}
             {isAuthenticated && <MenuLink href="/archive">Archive</MenuLink>}
             <MenuLink>
               {isAuthenticated ? <LogoutButton /> : <LoginButton />}

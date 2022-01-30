@@ -7,6 +7,8 @@ export const NoteContainer = styled.form`
   border-radius: 8px;
   margin: 20px auto;
   padding: 20px;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
 `;
 
 export const NoteTitle = styled.input`
@@ -16,6 +18,8 @@ export const NoteTitle = styled.input`
   font-size: 18px;
   margin: 10px 0;
   outline: none;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
   &::placeholder {
     color: #3c4043;
     opacity: 1;
@@ -25,6 +29,8 @@ export const NoteTitle = styled.input`
 export const NoteContent = styled.textarea`
   border: none;
   display: block;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
   width: 100%;
   font-size: 13px;
   font-weight: bold;
@@ -41,6 +47,8 @@ export const NoteControls = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
 `;
 
 export const NoteBtn = styled.button`
