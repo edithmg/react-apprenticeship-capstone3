@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { BiVideo } from 'react-icons/bi';
 import { Container } from '../../../GlobalStyles';
 
 export const Nav = styled.nav`
@@ -40,14 +39,6 @@ export const Hamburger = styled.div`
     right: 20px;
   }
 `;
-export const NavIcon = styled(BiVideo)`
-  margin-right: 0.8rem;
-  transition: all 0.5s ease;
-  color: ${(theme) => theme.buttonBg};
-  &:hover {
-    transform: scale(2);
-  }
-`;
 
 export const NavLogo = styled.img`
   width: 40px;
@@ -66,7 +57,7 @@ export const MenuLink = styled.a`
 
 export const Menu = styled.div`
   display: flex;
-  width: 330px;
+  width: 530px;
   margin-left: auto;
   position: relative;
   background-color: ${(theme) => theme.navBg};

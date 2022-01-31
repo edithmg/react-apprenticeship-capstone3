@@ -5,7 +5,6 @@ import Loading from '../Loading';
 
 const Private = ({ children, ...rest }) => {
   const { isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated);
 
   if (isLoading) {
     return <Loading />;

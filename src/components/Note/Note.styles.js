@@ -7,12 +7,13 @@ export const NoteContainer = styled.form`
   border-radius: 8px;
   margin: 20px auto;
   padding: 20px;
+  background: ${(props) => props.caseStudyColor};
 `;
 
 export const NoteTitle = styled.input`
   border: none;
   display: block;
-  background: ${({ theme }) => theme.background};
+  background: ${(props) => props.caseStudyColor};
   color: ${({ theme }) => theme.color};
   width: 100%;
   font-size: 18px;
@@ -26,7 +27,7 @@ export const NoteTitle = styled.input`
 export const NoteContent = styled.textarea`
   border: none;
   display: block;
-  background: ${({ theme }) => theme.background};
+  background: ${(props) => props.caseStudyColor};
   color: ${({ theme }) => theme.color};
   width: 100%;
   font-size: 13px;
@@ -43,7 +44,7 @@ export const NoteContent = styled.textarea`
 export const NoteControls = styled.div`
   display: flex;
   flex-direction: row;
-  background: ${({ theme }) => theme.background};
+  background: ${(props) => props.caseStudyColor};
   color: ${({ theme }) => theme.color};
 `;
 
@@ -52,4 +53,5 @@ export const NoteBtn = styled.button`
   size: 1.5em;
   cursor: pointer;
   padding: 0.5em;
+  background: ${(props) => props.caseStudyColor};
 `;

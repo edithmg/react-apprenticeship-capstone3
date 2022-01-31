@@ -24,13 +24,14 @@ const Header = ({ children }) => {
       <Nav>
         <NavContainer>
           <Logo href="/">
-            <NavLogo src={Tidy} />
+            <NavLogo src={Tidy} title="Tidy Notes logo" />
             Tidy Notes
           </Logo>
           <Menu isOpen={isOpen}>
             <MenuLink> {children}</MenuLink>
             {isAuthenticated && <MenuLink href="/search">Search</MenuLink>}
             {isAuthenticated && <MenuLink href="/archive">Archive</MenuLink>}
+            {isAuthenticated && <MenuLink href="/trash">Trash</MenuLink>}
             <MenuLink>
               {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </MenuLink>

@@ -17,16 +17,18 @@ const NoteForm = (props) => {
   const initialState = {
     title: props.item ? props.item.title : '',
     content: props.item ? props.item.content : '',
+    color: props.item ? props.item.color : '#fff',
     archive: props.item ? props.item.archive : false,
     trash: props.item ? props.item.trash : false,
   };
   const [item, setItem] = useState(initialState);
   const [showTitle, setShowTitle] = useState(false);
   const [clearForm, setClearForm] = useState(false);
+  const [colorNote, setColorNote] = useState(false);
   const [sendToArchive, setSendToArchive] = useState(false);
   const [sendToTrash, setSendToTrash] = useState(false);
 
-  const { title, content, archive, trash } = item;
+  const { title, content, color, archive, trash } = item;
 
   const onFocusNote = () => {
     setShowTitle(true);
@@ -42,6 +44,11 @@ const NoteForm = (props) => {
     setSendToTrash(true);
   };
 
+  const addColor = (e) => {
+    e.preventDefault();
+    setColorNote(true);
+  };
+
   const onChangeValues = (e) => {
     const { name, value } = e.target;
     setItem((prevState) => ({
@@ -53,7 +60,8 @@ const NoteForm = (props) => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     onFocusNote();
-    const values = [title, content, archive, trash];
+    const values = [title, content, color, archive, trash];
+    console.log(values);
 
     const allFieldsFilled = values.every((field) => {
       const value = `${field}`.trim();
@@ -65,12 +73,16 @@ const NoteForm = (props) => {
         id: nanoid(),
         title,
         content,
+        color,
         archive,
         trash,
       };
       //revisiting archive/trash status
       item.archive = sendToArchive;
       item.trash = sendToTrash;
+      if (colorNote) {
+        item.color = '#ccc';
+      }
       setClearForm(true);
       props.handleOnSubmit(item);
     }
@@ -99,7 +111,7 @@ const NoteForm = (props) => {
       {showTitle && (
         <NoteControls>
           <NoteBtn>
-            <MdOutlinePalette title="Change note color" />
+            <MdOutlinePalette title="Change note color" onClick={addColor} />
           </NoteBtn>
           <NoteBtn>
             <MdOutlineArchive onClick={fileToArchive} title="Archive note" />{' '}

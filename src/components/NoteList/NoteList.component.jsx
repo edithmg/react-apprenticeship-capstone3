@@ -5,6 +5,8 @@ import { SectionNotes } from './NoteList.styles';
 
 const NoteList = ({ type }) => {
   const { items, setItems } = useContext(GlobalContext);
+  let archiveItems,
+    trashItems = [];
 
   const handleRemoveItem = (id) => {
     setItems(items.filter((item) => item.id !== id));
@@ -31,11 +33,15 @@ const NoteList = ({ type }) => {
   }
 
   if (type === 'archive') {
+    if (items.length > 0) {
+      archiveItems = items.filter((item) => item.archive === true);
+    }
+
     return (
       <>
         <SectionNotes>
-          {items.length > 0 ? (
-            items
+          {archiveItems.length > 0 ? (
+            archiveItems
               .filter((item) => item.archive === true)
               .map((item) => (
                 <Note
@@ -53,11 +59,14 @@ const NoteList = ({ type }) => {
   }
 
   if (type === 'trash') {
+    if (items.length > 0) {
+      trashItems = items.filter((item) => item.trash === true);
+    }
     return (
       <>
         <SectionNotes>
-          {items.length > 0 ? (
-            items
+          {trashItems.length > 0 ? (
+            trashItems
               .filter((item) => item.trash === true)
               .map((item) => (
                 <Note

@@ -8,7 +8,7 @@ import {
   NoteContainer,
 } from './Note.styles';
 
-const Note = ({ id, title, content, handleRemoveItem }) => {
+const Note = ({ id, title, content, color, handleRemoveItem }) => {
   /*
   const [showControls, setShowControls] = useState(false);
 
@@ -24,11 +24,16 @@ const Note = ({ id, title, content, handleRemoveItem }) => {
     setShowTitle(true);
   };
 
-  console.log(isEditable);
-
   return (
-    <NoteContainer>
-      {showTitle && <NoteTitle type="text" name="title" defaultValue={title} />}
+    <NoteContainer caseStudyColor={color}>
+      {showTitle && (
+        <NoteTitle
+          type="text"
+          name="title"
+          defaultValue={title}
+          caseStudyColor={color}
+        />
+      )}
 
       <NoteContent
         type="text"
@@ -37,9 +42,10 @@ const Note = ({ id, title, content, handleRemoveItem }) => {
         onClick={toggleEdit}
         onFocus={onFocusNote}
         onBlur={onFocusNote}
+        caseStudyColor={color}
       />
       {showTitle && (
-        <NoteControls>
+        <NoteControls caseStudyColor={color}>
           <NoteBtn onClick={() => handleRemoveItem(id)}>
             <MdDeleteForever title="Delete note" />{' '}
           </NoteBtn>

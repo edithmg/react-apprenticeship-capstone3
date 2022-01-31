@@ -13,7 +13,8 @@ import {
 const SearchNotes = () => {
   const { items, setItems } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState('');
-  let filterNotes = items;
+  const [showResults, setShowResults] = useState(false);
+  //let filterNotes = items;
 
   const handleRemoveItem = (id) => {
     setItems(items.filter((item) => item.id !== id));
@@ -21,8 +22,8 @@ const SearchNotes = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    filterNotes = items.filter((item) => item.title.includes(searchTerm));
-    console.log(filterNotes);
+    setShowResults(true);
+    //filterNotes = items.filter((item) => item.title.includes(searchTerm));
   };
 
   return (
@@ -34,29 +35,34 @@ const SearchNotes = () => {
           </SearchLabel>
           <SearchBox
             type="text"
-            placeholder="Search notes"
+            placeholder="Search notes and hit enter"
             name="searchbox"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </SearchForm>
-
-        <SearchResults>
-          {items
-            .filter((item) => {
-              if (searchTerm === '') {
-                return item;
-              } else if (item.title.includes(searchTerm)) {
-                return item;
-              }
-            })
-            .map((item) => (
-              <Note
-                key={item.id}
-                {...item}
-                handleRemoveItem={handleRemoveItem}
-              />
-            ))}
-        </SearchResults>
+        {showResults && (
+          <SearchResults>
+            {items.length > 0 ? (
+              items
+                .filter((item) => {
+                  if (searchTerm === '') {
+                    return item;
+                  } else if (item.title.includes(searchTerm)) {
+                    return item;
+                  }
+                })
+                .map((item) => (
+                  <Note
+                    key={item.id}
+                    {...item}
+                    handleRemoveItem={handleRemoveItem}
+                  />
+                ))
+            ) : (
+              <h4>No notes</h4>
+            )}
+          </SearchResults>
+        )}
       </SearchSection>
     </>
   );

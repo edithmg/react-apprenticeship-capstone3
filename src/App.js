@@ -17,6 +17,7 @@ import Trash from './pages/Trash';
 
 const App = () => {
   const [items, setItems] = useLocalStorage('notes', []);
+
   //theme settings
   const [theme, themeToggler] = useDarkTheme();
   const selectedTheme = theme === 'light' ? lightTheme : darkTheme;
