@@ -15,7 +15,6 @@ export const LoginContainer = styled.section`
 
 export const LogBtn = styled.button`
   text-align: center;
-  width: 4rem;
   border-radius: ${({ bigRadius }) => (bigRadius ? '30px' : '20px')};
   background: ${({ theme }) => theme.buttonBg};
   color: ${({ theme }) => theme.color};

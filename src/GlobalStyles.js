@@ -19,7 +19,7 @@ html {
 body { 
     font-family: 'Space Mono', monospace;
     line-height: 1.5;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 400;
     background: ${({ theme }) => theme.background};
      color: ${({ theme }) => theme.color};
@@ -37,7 +37,6 @@ h1 {
   }
 }
 h2 {
- 
   font-size: 2.5rem;
   @media (max-width: 600px) {
     font-size: 1.7rem;
@@ -47,6 +46,12 @@ h3 {
   font-weight: 700;
   font-size: 3rem;
   margin: 1.4rem;
+  @media (max-width: 400px) {
+    font-size: 1.7rem;
+  }
+}
+svg {
+  font-size: 2rem;
   @media (max-width: 400px) {
     font-size: 1.7rem;
   }

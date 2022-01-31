@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import {
   NoteBtn,
   NoteContent,
   NoteControls,
   NoteTitle,
-  NoteForm,
+  NoteContainer,
 } from './Note.styles';
 
 const Note = ({ id, title, content, handleRemoveItem }) => {
@@ -16,17 +16,36 @@ const Note = ({ id, title, content, handleRemoveItem }) => {
     setShowControls(true);
   };
 */
-  return (
-    <NoteForm>
-      <NoteTitle type="text" name="title" defaultValue={title} />
-      <NoteContent type="text" name="content" defaultValue={content} />
+  const [showTitle, setShowTitle] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
 
-      <NoteControls>
-        <NoteBtn onClick={() => handleRemoveItem(id)}>
-          <MdDeleteForever title="Delete note" />{' '}
-        </NoteBtn>
-      </NoteControls>
-    </NoteForm>
+  const toggleEdit = () => setIsEditable(!isEditable);
+  const onFocusNote = () => {
+    setShowTitle(true);
+  };
+
+  console.log(isEditable);
+
+  return (
+    <NoteContainer>
+      {showTitle && <NoteTitle type="text" name="title" defaultValue={title} />}
+
+      <NoteContent
+        type="text"
+        name="content"
+        defaultValue={content}
+        onClick={toggleEdit}
+        onFocus={onFocusNote}
+        onBlur={onFocusNote}
+      />
+      {showTitle && (
+        <NoteControls>
+          <NoteBtn onClick={() => handleRemoveItem(id)}>
+            <MdDeleteForever title="Delete note" />{' '}
+          </NoteBtn>
+        </NoteControls>
+      )}
+    </NoteContainer>
   );
 };
 

@@ -11,7 +11,6 @@ import { lightTheme, darkTheme } from './components/Themes';
 import ThemeToggler from './components/ThemeToggler';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Test from './pages/Test';
 import Search from './pages/Search';
 import Archive from './pages/Archive';
 import Trash from './pages/Trash';
@@ -38,23 +37,20 @@ const App = () => {
               <ThemeToggler themeToggler={themeToggler} selectedTheme={theme} />
             </Header>
             <Switch>
-              <Route exact path="/">
+              <Private exact path="/">
                 <Home />
-              </Route>
+              </Private>
               <Route exact path="/login">
                 <Login />
               </Route>
-              <Route exact path="/search">
+              <Private exact path="/search">
                 <Search />
-              </Route>
-              <Route path="/archive">
+              </Private>
+              <Private path="/archive">
                 <Archive />
-              </Route>
-              <Route path="/trash">
+              </Private>
+              <Private path="/trash">
                 <Trash />
-              </Route>
-              <Private exact path="/test">
-                <Test />
               </Private>
             </Switch>
           </BrowserRouter>
