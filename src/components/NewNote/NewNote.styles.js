@@ -7,6 +7,9 @@ export const NoteForm = styled.form`
   border-radius: 8px;
   margin: 20px auto;
   padding: 20px;
+  @media (max-width: 400px) {
+    width: 350px;
+  }
 `;
 
 export const NoteTitle = styled.input`

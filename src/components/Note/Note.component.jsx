@@ -26,14 +26,12 @@ const Note = ({ id, title, content, color, handleRemoveItem }) => {
 
   return (
     <NoteContainer caseStudyColor={color}>
-      {showTitle && (
-        <NoteTitle
-          type="text"
-          name="title"
-          defaultValue={title}
-          caseStudyColor={color}
-        />
-      )}
+      <NoteTitle
+        type="text"
+        name="title"
+        defaultValue={title}
+        caseStudyColor={color}
+      />
 
       <NoteContent
         type="text"

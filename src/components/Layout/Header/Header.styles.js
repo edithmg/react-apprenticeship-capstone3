@@ -26,11 +26,12 @@ export const Hamburger = styled.div`
   display: none;
   flex-direction: column;
   cursor: pointer;
+
   span {
     height: 2px;
     width: 1.6rem;
     margin-bottom: 4px;
-    background: white;
+    background: #515d90;
   }
   @media (max-width: 768px) {
     display: flex;
@@ -52,7 +53,10 @@ export const MenuLink = styled.a`
   padding: 1rem 2rem;
   text-align: center;
   text-decoration: none;
-  color: ${(theme) => theme.buttonBg};
+  color: ${(theme) => theme.link};
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Menu = styled.div`
@@ -74,7 +78,7 @@ export const Menu = styled.div`
   }
 `;
 export const Logo = styled.a`
-  color: ${(theme) => theme.buttonBg};
+  color: ${(theme) => theme.link};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -84,5 +88,8 @@ export const Logo = styled.a`
   transition: ${({ theme }) => theme.transitionTime};
   &:hover {
     transform: scale(1.08);
+  }
+  @media (max-width: 768px) {
+    font-size: 2rem;
   }
 `;

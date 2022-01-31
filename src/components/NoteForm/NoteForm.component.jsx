@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { TwitterPicker } from 'react-color';
 import {
   MdOutlineArchive,
   MdOutlinePalette,
@@ -27,6 +28,7 @@ const NoteForm = (props) => {
   const [colorNote, setColorNote] = useState(false);
   const [sendToArchive, setSendToArchive] = useState(false);
   const [sendToTrash, setSendToTrash] = useState(false);
+  const [selectedColor, setSelectedColor] = useState('#fff');
 
   const { title, content, color, archive, trash } = item;
 
@@ -44,10 +46,7 @@ const NoteForm = (props) => {
     setSendToTrash(true);
   };
 
-  const addColor = (e) => {
-    e.preventDefault();
-    setColorNote(true);
-  };
+  const togglePicker = () => setColorNote(!colorNote);
 
   const onChangeValues = (e) => {
     const { name, value } = e.target;
@@ -61,7 +60,6 @@ const NoteForm = (props) => {
     event.preventDefault();
     onFocusNote();
     const values = [title, content, color, archive, trash];
-    console.log(values);
 
     const allFieldsFilled = values.every((field) => {
       const value = `${field}`.trim();
@@ -81,7 +79,7 @@ const NoteForm = (props) => {
       item.archive = sendToArchive;
       item.trash = sendToTrash;
       if (colorNote) {
-        item.color = '#ccc';
+        item.color = selectedColor.hex;
       }
       setClearForm(true);
       props.handleOnSubmit(item);
@@ -89,7 +87,7 @@ const NoteForm = (props) => {
   };
 
   return (
-    <NoteContainer onSubmit={handleOnSubmit}>
+    <NoteContainer onSubmit={handleOnSubmit} caseStudyColor={selectedColor.hex}>
       {showTitle && (
         <NoteTitle
           type="text"
@@ -97,6 +95,7 @@ const NoteForm = (props) => {
           defaultValue={!clearForm ? title : ''}
           placeholder="Title"
           onChange={onChangeValues}
+          caseStudyColor={selectedColor.hex}
         />
       )}
       <NoteContent
@@ -107,12 +106,23 @@ const NoteForm = (props) => {
         onChange={onChangeValues}
         onFocus={onFocusNote}
         onBlur={onFocusNote}
+        caseStudyColor={selectedColor.hex}
       />
+      {colorNote && (
+        <TwitterPicker
+          color={selectedColor}
+          onChange={(updatedColor) => setSelectedColor(updatedColor)}
+        />
+      )}
       {showTitle && (
         <NoteControls>
           <NoteBtn>
-            <MdOutlinePalette title="Change note color" onClick={addColor} />
+            <MdOutlinePalette
+              title="Change note color"
+              onClick={togglePicker}
+            />
           </NoteBtn>
+
           <NoteBtn>
             <MdOutlineArchive onClick={fileToArchive} title="Archive note" />{' '}
           </NoteBtn>

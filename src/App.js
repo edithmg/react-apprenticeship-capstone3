@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Search from './pages/Search';
 import Archive from './pages/Archive';
 import Trash from './pages/Trash';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   const [items, setItems] = useLocalStorage('notes', []);
@@ -53,6 +54,9 @@ const App = () => {
               <Private path="/trash">
                 <Trash />
               </Private>
+              <Route path="*">
+                <NotFound />
+              </Route>
             </Switch>
           </BrowserRouter>
         </ThemeProvider>

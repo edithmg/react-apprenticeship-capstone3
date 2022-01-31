@@ -14,7 +14,6 @@ const SearchNotes = () => {
   const { items, setItems } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResults, setShowResults] = useState(false);
-  //let filterNotes = items;
 
   const handleRemoveItem = (id) => {
     setItems(items.filter((item) => item.id !== id));
@@ -23,7 +22,6 @@ const SearchNotes = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setShowResults(true);
-    //filterNotes = items.filter((item) => item.title.includes(searchTerm));
   };
 
   return (
@@ -47,7 +45,10 @@ const SearchNotes = () => {
                 .filter((item) => {
                   if (searchTerm === '') {
                     return item;
-                  } else if (item.title.includes(searchTerm)) {
+                  } else if (
+                    item.title.includes(searchTerm) ||
+                    item.content.includes(searchTerm)
+                  ) {
                     return item;
                   }
                 })
